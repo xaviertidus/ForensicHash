@@ -29,7 +29,7 @@ Repository: [https://github.com/xaviertidus/ForensicHash](https://github.com/xav
    - For `.7z` support: Install `7-Zip` (Windows) or `p7zip` (Linux/Mac) and ensure `7z` is in your PATH.
    - For progress bars: `pip install tqdm`
    - For file type validation (MIME): `pip install python-magic` (requires system libmagic).
-   - For signing: Ensure `gpg` is installed and configured with keys.
+   - For signing: Ensure `gpg` is installed and configured with keys (see "Creating a GPG Key for Testing" below).
 3. Clone the repository:
    ```
    git clone https://github.com/xaviertidus/ForensicHash.git
@@ -37,6 +37,41 @@ Repository: [https://github.com/xaviertidus/ForensicHash](https://github.com/xav
 4. Place `forensic_hash.py` in your project directory or use it directly from the repository.
 
 No other external libraries are needed beyond Python's standard library and the above.
+
+## Creating a GPG Key for Testing
+To use the `--sign` option for signing reports, you need a GPG key. Follow these steps to create a test GPG key:
+
+1. **Install GPG**:
+   - Windows: Install Gpg4win (https://gpg4win.org).
+   - Linux: Install `gnupg` (e.g., `sudo apt install gnupg` on Ubuntu).
+   - Mac: Install via Homebrew (`brew install gnupg`).
+
+2. **Generate a Test Key**:
+   Run:
+   ```
+   gpg --gen-key
+   ```
+   - Select `(1) RSA and RSA (default)`.
+   - Choose a key size (e.g., 2048 bits).
+   - Set key validity (e.g., `0` for no expiration).
+   - Enter a name (e.g., "Test User"), email (e.g., "test@example.com"), and optional passphrase.
+   - Follow prompts to complete key generation.
+
+3. **Get Your Key ID**:
+   List your keys:
+   ```
+   gpg --list-keys
+   ```
+   Find the key ID (e.g., `A1B2C3D4`) in the `pub` line (after `rsa2048/`).
+
+4. **Use with ForensicHash**:
+   Use the key ID with the `--sign` option:
+   ```
+   python forensic_hash.py --sign A1B2C3D4 -o report.txt disk.7z
+   ```
+   This creates `report.txt.sig` for verification.
+
+**Note**: This is a basic key for testing. For production, use a secure passphrase and store keys safely.
 
 ## Usage
 Run the script from the command line:
