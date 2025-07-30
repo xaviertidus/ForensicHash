@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "forensic_hash"
+version = "0.1.0"
+description = "ForensicHash: Python tool for digital evidence integrity. Decompresses archives, computes MD5/SHA1/SHA256/SHA512 hashes, verifies reports, signs outputs, logs custody. Supports TEXT/JSON/CSV, parallel processing."
+readme = "README.md"
+authors = [{ name = "xaviertidus" }]
+license = { text = "MIT License" }
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "tqdm",  # For progress bars
+    "python-magic",  # For MIME type validation (optional but listed)
+]
+
+[project.urls]
+"Homepage" = "https://github.com/xaviertidus/ForensicHash"
+"Repository" = "https://github.com/xaviertidus/ForensicHash"
+
+[project.scripts]
+forensichash = "forensic_hash.forensic_hash:main"

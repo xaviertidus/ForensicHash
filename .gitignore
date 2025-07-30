@@ -1,0 +1,41 @@
+# Python build artifacts
+forensic_hash.egg-info/
+*.egg-info/
+dist/
+build/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+.env/
+env/
+*.venv/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.bak
+*.swp
+*~
+
+# Log and output files
+*.log
+*.txt
+*.json
+*.csv
+*.sig
+
+# Other common ignores
+*.cache
+*.tmp

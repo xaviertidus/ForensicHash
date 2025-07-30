@@ -34,7 +34,22 @@ Repository: [https://github.com/xaviertidus/ForensicHash](https://github.com/xav
    ```
    git clone https://github.com/xaviertidus/ForensicHash.git
    ```
-4. Place `forensic_hash.py` in your project directory or use it directly from the repository.
+
+### Installing as a Package
+To install ForensicHash as a CLI tool:
+1. Clone the repository if not already done.
+2. In the project root, run:
+   ```
+   pip install .
+   ```
+3. Now run `forensichash [options] file1 [file2 ...]` from anywhere.
+
+For development (editable install):
+```
+pip install -e .
+```
+
+Alternatively, place `forensic_hash.py` in your project directory and run directly with `python forensic_hash.py [options] file1 [file2 ...]`.
 
 No other external libraries are needed beyond Python's standard library and the above.
 
@@ -67,15 +82,20 @@ To use the `--sign` option for signing reports, you need a GPG key. Follow these
 4. **Use with ForensicHash**:
    Use the key ID with the `--sign` option:
    ```
-   python forensic_hash.py --sign A1B2C3D4 -o report.txt disk.7z
+   forensichash --sign A1B2C3D4 -o report.txt disk.7z
    ```
    This creates `report.txt.sig` for verification.
 
 **Note**: This is a basic key for testing. For production, use a secure passphrase and store keys safely.
 
 ## Usage
-Run the script from the command line:
+Run the script from the command line after installation:
 
+```
+forensichash [options] file1 [file2 ...]
+```
+
+Or, if not installed as a package:
 ```
 python forensic_hash.py [options] file1 [file2 ...]
 ```
@@ -83,32 +103,32 @@ python forensic_hash.py [options] file1 [file2 ...]
 ### Examples
 - Basic with additional hashes:
   ```
-  python forensic_hash.py --hashes SHA256,MD5 -o report.txt disk.7z
+  forensichash --hashes SHA256,MD5 -o report.txt disk.7z
   ```
 
 - Sign the report:
   ```
-  python forensic_hash.py --sign YOUR_KEY_ID -o report.txt disk.7z
+  forensichash --sign YOUR_KEY_ID -o report.txt disk.7z
   ```
 
 - Log custody and process in parallel:
   ```
-  python forensic_hash.py --log-custody custody.log --parallel 4 disk.7z memory.7z
+  forensichash --log-custody custody.log --parallel 4 disk.7z memory.7z
   ```
 
 - Verify against previous report:
   ```
-  python forensic_hash.py --verify old_report.txt disk.7z
+  forensichash --verify old_report.txt disk.7z
   ```
 
 - Restrict types and JSON output:
   ```
-  python forensic_hash.py --restrict-types .raw,image/jpeg --format JSON -o report.json disk.7z
+  forensichash --restrict-types .raw,image/jpeg --format JSON -o report.json disk.7z
   ```
 
 - Error logging:
   ```
-  python forensic_hash.py --error-log errors.log disk.7z
+  forensichash --error-log errors.log disk.7z
   ```
 
 ### Options
