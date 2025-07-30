@@ -1,4 +1,3 @@
-
 # ForensicHash
 
 ForensicHash: Python tool for digital evidence integrity. Decompresses archives, computes MD5/SHA1/SHA256/SHA512 hashes, verifies reports, signs outputs, logs custody. Supports TEXT/JSON/CSV, parallel processing. MIT License.
@@ -35,7 +34,7 @@ Repository: [https://github.com/xaviertidus/ForensicHash](https://github.com/xav
    ```
    git clone https://github.com/xaviertidus/ForensicHash.git
    ```
-4. Place `generate_hashes.py` in your project directory or use it directly from the repository.
+4. Place `forensic_hash.py` in your project directory or use it directly from the repository.
 
 No other external libraries are needed beyond Python's standard library and the above.
 
@@ -43,38 +42,38 @@ No other external libraries are needed beyond Python's standard library and the 
 Run the script from the command line:
 
 ```
-python generate_hashes.py [options] file1 [file2 ...]
+python forensic_hash.py [options] file1 [file2 ...]
 ```
 
 ### Examples
 - Basic with additional hashes:
   ```
-  python generate_hashes.py --hashes SHA256,MD5 -o report.txt disk.7z
+  python forensic_hash.py --hashes SHA256,MD5 -o report.txt disk.7z
   ```
 
 - Sign the report:
   ```
-  python generate_hashes.py --sign YOUR_KEY_ID -o report.txt disk.7z
+  python forensic_hash.py --sign YOUR_KEY_ID -o report.txt disk.7z
   ```
 
 - Log custody and process in parallel:
   ```
-  python generate_hashes.py --log-custody custody.log --parallel 4 disk.7z memory.7z
+  python forensic_hash.py --log-custody custody.log --parallel 4 disk.7z memory.7z
   ```
 
 - Verify against previous report:
   ```
-  python generate_hashes.py --verify old_report.txt disk.7z
+  python forensic_hash.py --verify old_report.txt disk.7z
   ```
 
 - Restrict types and JSON output:
   ```
-  python generate_hashes.py --restrict-types .raw,image/jpeg --format JSON -o report.json disk.7z
+  python forensic_hash.py --restrict-types .raw,image/jpeg --format JSON -o report.json disk.7z
   ```
 
 - Error logging:
   ```
-  python generate_hashes.py --error-log errors.log disk.7z
+  python forensic_hash.py --error-log errors.log disk.7z
   ```
 
 ### Options
